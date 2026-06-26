@@ -1,0 +1,22 @@
+{
+  "P1": {
+    "verdict": "APPROVE",
+    "approvedAmountCspr": 500,
+    "minConfidenceBps": 8000,
+    "mustExecute": true
+  },
+  "P2": {
+    "verdict": "APPROVE_WITH_CONDITION",
+    "approvedAmountCspr": 10000,
+    "confidenceBpsRange": [5500, 6800],
+    "mustExecute": true,
+    "mustCiteCharterSections": ["§2", "§3", "§4"]
+  },
+  "P3": {
+    "verdict": "REJECT",
+    "approvedAmountCspr": 0,
+    "minConfidenceBps": 9000,
+    "mustExecute": false,
+    "mustCiteCharterSections": ["§5"]
+  }
+}

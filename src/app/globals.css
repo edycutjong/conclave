@@ -1,26 +1,235 @@
 @import "tailwindcss";
 
+/* ── Conclave War-Room Design System ──────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --surface: #0f172a;
+  --surface-elevated: #1e293b;
+  --border: #334155;
+  --border-subtle: #1e293b;
+  /* Agent colors */
+  --risk: #f59e0b;
+  --treasury: #14b8a6;
+  --legal: #a78bfa;
+  --arbiter: #f1f5f9;
+  /* Status colors */
+  --approve: #22c55e;
+  --reject: #ef4444;
+  --cap: #f59e0b;
+  --flag: #f97316;
+  /* Accent */
+  --accent: #06b6d4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-risk: var(--risk);
+  --color-treasury: var(--treasury);
+  --color-legal: var(--legal);
+  --color-arbiter: var(--arbiter);
+  --color-approve: var(--approve);
+  --color-reject: var(--reject);
+  --color-cap: var(--cap);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-space-grotesk);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ── Base ──────────────────────────────────────────────────────────────── */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, system-ui, sans-serif);
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display, var(--font-sans)), sans-serif;
+}
+
+/* ── Text gradient & glows ────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 20%, #e2e8f0 60%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+}
+
+/* ── Nebula ambient lighting ────────────────────────────────────────── */
+.nebula-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(167, 139, 250, 0.04) 50%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(60px);
+  animation: nebula-drift 10s ease-in-out infinite alternate;
+}
+
+@keyframes nebula-drift {
+  0% { transform: translateX(-50%) translateY(0) scale(1); }
+  50% { transform: translateX(-47%) translateY(15px) scale(1.05); }
+  100% { transform: translateX(-53%) translateY(-10px) scale(0.95); }
+}
+
+/* ── Sweeping Scanline ──────────────────────────────────────────────── */
+.scanline-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.4), transparent);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+  pointer-events: none;
+  z-index: 10;
+  animation: scan 4s linear infinite;
+  opacity: 0.65;
+}
+
+@keyframes scan {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+/* ── Bento box dynamic styling ──────────────────────────────────────── */
+.bento-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(2, 6, 23, 0.6), 0 0 15px rgba(6, 182, 212, 0.15);
+}
+
+/* ── Grid background ──────────────────────────────────────────────────── */
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(51, 65, 85, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(51, 65, 85, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Glassmorphism ────────────────────────────────────────────────────── */
+
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.glass-elevated {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+/* ── Animations ───────────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(6, 182, 212, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.6); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes verdict-reveal {
+  from { opacity: 0; transform: scale(0.95) translateY(4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-fadeIn { animation: fadeIn 0.4s ease-out; }
+.animate-slideUp { animation: slideUp 0.5s ease-out; }
+.animate-slideDown { animation: slideDown 0.3s ease-out; }
+.animate-scaleIn { animation: scale-in 0.4s ease-out; }
+.animate-verdict { animation: verdict-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.animate-pulseGlow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-spinSlow { animation: spin-slow 3s linear infinite; }
+.animate-blink { animation: blink 1.2s ease-in-out infinite; }
+
+/* Staggered children */
+.stagger > * { animation: slideUp 0.4s ease-out backwards; }
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 100ms; }
+.stagger > *:nth-child(3) { animation-delay: 200ms; }
+.stagger > *:nth-child(4) { animation-delay: 300ms; }
+
+/* ── Agent column accents ─────────────────────────────────────────────── */
+
+.agent-risk { border-left: 3px solid var(--risk); }
+.agent-treasury { border-left: 3px solid var(--treasury); }
+.agent-legal { border-left: 3px solid var(--legal); }
+.agent-arbiter { border-left: 3px solid var(--arbiter); }
+
+/* ── Confidence dial ──────────────────────────────────────────────────── */
+
+.confidence-arc {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Veto bar ─────────────────────────────────────────────────────────── */
+
+.veto-countdown {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Scrollbar styling ────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--foreground); }

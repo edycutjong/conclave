@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +40,26 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# rust / odra contract
+/contract/target
+/contract/wasm
+/contract/.builder
+
+# conclave local state + testnet keypairs (never commit)
+/data/keys
+/data/state.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Lighthouse
+.lighthouseci/
+
+# docs
+_shared/
+_designs/
+assets/
