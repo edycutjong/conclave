@@ -2,6 +2,14 @@
   "name": "conclave",
   "version": "1.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edycutjong/conclave.git"
+  },
+  "bugs": {
+    "url": "https://github.com/edycutjong/conclave/issues"
+  },
+  "homepage": "https://github.com/edycutjong/conclave#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
