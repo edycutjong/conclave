@@ -171,7 +171,7 @@ Conclave leverages the Model Context Protocol to ground its AI council agents in
 
 | Item | Value |
 |---|---|
-| Contract package | `hash-0b7fcb9879f8a6fd5dd07f104bf5e74ace7c1a9b3c375c902fbf0bc044248e79` |
+| Contract package | [`hash-0b7fcb9879f8a6fd5dd07f104bf5e74ace7c1a9b3c375c902fbf0bc044248e79` ↗](https://testnet.cspr.live/contract-package/0b7fcb9879f8a6fd5dd07f104bf5e74ace7c1a9b3c375c902fbf0bc044248e79) |
 | Install deploy | [`03c6b2145f06a1357ef63112f11862020ff916614a9c8bf5e584cc236bbbd6f6` ↗](https://testnet.cspr.live/transaction/03c6b2145f06a1357ef63112f11862020ff916614a9c8bf5e584cc236bbbd6f6) |
 | `submit_proposal` | [`6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232` ↗](https://testnet.cspr.live/transaction/6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232) |
 | `record_verdict` | [`e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4` ↗](https://testnet.cspr.live/transaction/e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4) |
