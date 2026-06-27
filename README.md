@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/icon.svg" alt="Conclave Logo" width="120">
+  <img src="docs/icon.svg" alt="Conclave Logo" width="144">
   <h1>Conclave 🗳️</h1>
   <p><em>Agentic governance that reads the contract before it signs.</em></p>
   <img src="docs/readme-hero-animated.svg" alt="Conclave Hero" width="100%">
