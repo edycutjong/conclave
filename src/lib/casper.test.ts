@@ -116,6 +116,17 @@ describe("casper chain layer", () => {
     expect(signerPublicKeyHex()).toBe("0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f2021");
   });
 
+  it("loads key directly from string if PEM block is provided in config", () => {
+    const originalPath = config.orchestratorKeyPath;
+    (config as any).orchestratorKeyPath = "-----BEGIN PRIVATE KEY-----\nMOCK\n-----END PRIVATE KEY-----";
+    try {
+      const key = loadSignerKey();
+      expect(key).toBeDefined();
+    } finally {
+      (config as any).orchestratorKeyPath = originalPath;
+    }
+  });
+
   it("makes RPC client with CSPR.cloud API key if present", () => {
     const originalKey = config.csprCloudKey;
 
