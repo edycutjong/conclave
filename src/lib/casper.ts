@@ -33,7 +33,12 @@ export function keyAlgorithm(): KeyAlgorithm {
 
 /** Load the orchestrator signing key from the configured PEM path. */
 export function loadSignerKey(): PrivateKey {
-  const pem = readFileSync(config.orchestratorKeyPath, "utf8");
+  let pem: string;
+  if (config.orchestratorKeyPath.includes("-----BEGIN")) {
+    pem = config.orchestratorKeyPath.replace(/\\n/g, "\n");
+  } else {
+    pem = readFileSync(config.orchestratorKeyPath, "utf8");
+  }
   return PrivateKey.fromPem(pem, keyAlgorithm());
 }
 
