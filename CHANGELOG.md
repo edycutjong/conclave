@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0](../../compare/v1.3.0...v1.4.0) (2026-06-27)
+
+### 🚀 Features
+
+- **ui:** use brand icon.svg logo in top left (2b8ed81)
+
+### 💄 Style
+
+- **pitch:** replace custom SVGs with premium icon.svg, remove globe emoji (88fc964)
+
+### 📝 Documentation
+
+- **pitch:** update Slide 12 Live Website links to match custom edycu.dev domains from README (6361fb9)
+- **pitch:** add live website and github codebase links on conclusion slide (c0468b8)
+- **pitch:** update Slide 8 to display full hashes and links to cspr.live (3874b96)
+
 ## [1.3.0](../../compare/v1.2.0...v1.3.0) (2026-06-27)
 
 ### 🚀 Features
