@@ -62,7 +62,7 @@ Current DAOs rely heavily on token holder attention, leading to voter apathy and
 ```mermaid
 flowchart TD
     U[DAO member] -->|submit proposal| FE[Next.js UI]
-    FE --> ORC[Agent Orchestrator (TS worker)]
+    FE --> ORC["Agent Orchestrator (TS worker)"]
     subgraph Council
       RA[Risk Agent]
       TA[Treasury Agent]
