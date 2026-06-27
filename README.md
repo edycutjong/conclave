@@ -28,11 +28,49 @@
 
 ## 📸 See it in Action
 
+> **A council of AI agents debates every DAO proposal, grounds it in live Casper state, collects approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet.**
+
+### 1. Conclave Governance Dashboard
 <div align="center">
-  <img src="public/og-image.png" alt="Conclave Demo" width="100%">
+  <img src="docs/screenshots/01-initial-dashboard.png" alt="Conclave Dashboard" width="100%">
 </div>
 
-> **A council of AI agents debates every DAO proposal, grounds it in live Casper state, collects approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet.**
+*The main war-room interface displaying the proposal registry, active voting statuses, and the four AI council agent seats (Risk, Treasury, Legal, and the Arbiter).*
+
+### 2. Multi-Agent Council Deliberation
+<div align="center">
+  <img src="docs/screenshots/03-convene-council-p1.png" alt="AI Council Deliberating" width="100%">
+</div>
+
+*Convening the council. The three specialist agents (Risk, Treasury, Legal) stream their reasoning live, analyzing the proposal against grounded Casper Testnet state.*
+
+### 3. Human Veto Window
+<div align="center">
+  <img src="docs/screenshots/04-veto-window-p1.png" alt="Veto Window" width="100%">
+</div>
+
+*Once the Arbiter issues a positive consensus verdict, the proposal enters a human veto countdown, allowing manual intervention before execution.*
+
+### 4. Casper Testnet Execution
+<div align="center">
+  <img src="docs/screenshots/05-executed-p1.png" alt="Executed Proposal" width="100%">
+</div>
+
+*After the veto window closes, the Executor agent signs and broadcasts the transaction to the Casper Testnet, linking to a live block explorer.*
+
+### 5. Interactive "What-If" Console
+<div align="center">
+  <img src="docs/screenshots/06-whatif-console.png" alt="What-If Console" width="100%">
+</div>
+
+*The custom proposal composer where users can test arbitrary targets, assets, and amounts against the AI council's reasoning.*
+
+### 6. Automated Policy Enforcement (Charter Violation)
+<div align="center">
+  <img src="docs/screenshots/08-whatif-self-mint.png" alt="Policy Violation Blocked" width="100%">
+</div>
+
+*A demonstration of a Charter Section 5 violation (attempted self-mint). The Legal agent flags the breach, the Arbiter issues a hard REJECT, and the console blocks execution.*
 
 ---
 
