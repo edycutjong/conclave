@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="t d">
+  <title id="t">Conclave (Static)</title>
+  <desc id="d">Agent council — three role-coloured agents debate, their argument lines converging into a central consensus seal stamped with an approval check inside a council ring.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="78%">
+      <stop offset="0%" stop-color="#2a1a04"/>
+      <stop offset="58%" stop-color="#120c05"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="brandStatic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <radialGradient id="seal" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#fcd34d"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </radialGradient>
+    <filter id="neon" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b1"/>
+      <feGaussianBlur stdDeviation="18" result="b2"/>
+      <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="112" fill="url(#grid)" opacity="0.85"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="256" cy="256" rx="150" ry="150" fill="#F59E0B" filter="url(#soft)" opacity="0.12"/>
+
+  <!-- Centered group -->
+  <g transform="translate(256, 256)">
+
+    <!-- Council ring with ticks -->
+    <circle cx="0" cy="0" r="186" fill="none" stroke="#F59E0B" stroke-width="2" opacity="0.3" stroke-dasharray="4 18"/>
+    <circle cx="0" cy="0" r="170" fill="none" stroke="#06B6D4" stroke-width="1.5" opacity="0.18"/>
+
+    <!-- Debate triangle edges -->
+    <g stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
+      <line x1="0" y1="-150" x2="-130" y2="75" stroke="#06B6D4"/>
+      <line x1="-130" y1="75" x2="130" y2="75" stroke="#22C55E"/>
+      <line x1="130" y1="75" x2="0" y2="-150" stroke="#F59E0B"/>
+    </g>
+
+    <!-- Convergence streams agent -> seal -->
+    <g stroke-width="5" stroke-linecap="round" stroke-dasharray="8 12" opacity="0.6">
+      <line x1="0" y1="-122" x2="0" y2="-46" stroke="#06B6D4"/>
+      <line x1="-106" y1="62" x2="-36" y2="26" stroke="#22C55E"/>
+      <line x1="106" y1="62" x2="36" y2="26" stroke="#F59E0B"/>
+    </g>
+
+    <!-- Three agent orbs -->
+    <g filter="url(#neon)">
+      <!-- Researcher -->
+      <g>
+        <circle cx="0" cy="-150" r="30" fill="#04121c" stroke="#06B6D4" stroke-width="6"/>
+        <circle cx="0" cy="-150" r="11" fill="#06B6D4"/>
+      </g>
+      <!-- Synthesizer -->
+      <g opacity="0.85">
+        <circle cx="-130" cy="75" r="30" fill="#04140d" stroke="#22C55E" stroke-width="6"/>
+        <circle cx="-130" cy="75" r="11" fill="#22C55E"/>
+      </g>
+      <!-- Skeptic -->
+      <g opacity="0.85">
+        <circle cx="130" cy="75" r="30" fill="#1c1304" stroke="#F59E0B" stroke-width="6"/>
+        <circle cx="130" cy="75" r="11" fill="#F59E0B"/>
+      </g>
+    </g>
+
+    <!-- Central consensus seal -->
+    <g filter="url(#neon)">
+      <polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" fill="none" stroke="url(#brandStatic)" stroke-width="4" opacity="0.8"/>
+      <circle cx="0" cy="0" r="40" fill="url(#seal)"/>
+    </g>
+
+    <!-- Approval check -->
+    <polyline points="-19,1 -5,16 21,-16" fill="none" stroke="#020617" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-19,1 -5,16 21,-16" fill="none" stroke="#00F0FF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#neon)"/>
+
+  </g>
+</svg>
