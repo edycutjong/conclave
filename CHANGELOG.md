@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0](../../compare/v1.4.1...v1.5.0) (2026-06-27)
+
+### 🚀 Features
+
+- **deck:** embed YouTube walkthrough and add final slide Pitch Video link (176db71)
+
+### 📝 Documentation
+
+- **readme:** update YouTube Pitch Video URL (162f4da)
+- **readme:** expand Testnet transaction deploy hashes to full length (6d30442)
+- **readme:** add MCP badge and Casper MCP setup instructions (3e72647)
+
 ## [1.4.1](../../compare/v1.4.0...v1.4.1) (2026-06-27)
 
 ### 🐛 Bug Fixes
