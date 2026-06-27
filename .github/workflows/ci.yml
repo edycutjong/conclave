@@ -42,6 +42,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: frontend-coverage
+          path: coverage/
           retention-days: 7
 
   contract-quality:
@@ -54,7 +55,7 @@ jobs:
       - name: Install Rust Toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: 1.80.0
+          toolchain: 1.82.0
           components: clippy, rustfmt
           targets: wasm32-unknown-unknown
 
