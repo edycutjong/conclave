@@ -196,28 +196,44 @@
     </div>
 
     <!-- Slide 6: Demo -->
-    <div class="slide max-w-5xl w-full flex-col text-left gap-6">
-      <span class="text-xs font-mono tracking-widest accent uppercase mb-2">Slide 06 // Live Demo</span>
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight mb-6">What Judges Must See</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl">
-        <div class="glass rounded-xl p-5 glow">
-          <div class="text-lg font-bold accent mb-2 flex items-center gap-2">
-            <img src="/icon.svg" class="w-5 h-5 object-contain" alt="Conclave Icon" />
-            Deliberation Chamber
+    <div class="slide max-w-6xl w-full flex-col lg:flex-row items-stretch gap-8">
+      <div class="flex-1 flex flex-col justify-center">
+        <span class="text-xs font-mono tracking-widest accent uppercase mb-2">Slide 06 // Live Demo</span>
+        <h2 class="text-3xl font-bold tracking-tight mb-4">Pitch & Walkthrough</h2>
+        <div class="relative w-full aspect-video rounded-xl overflow-hidden glass border border-slate-800 shadow-2xl">
+          <iframe 
+            class="absolute inset-0 w-full h-full" 
+            src="https://www.youtube.com/embed/0rq362abOuk" 
+            title="Conclave Demo Video" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      
+      <div class="flex-1 flex flex-col justify-center gap-4">
+        <h3 class="text-lg font-semibold text-slate-300">What Judges Must See</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="glass rounded-xl p-4 glow">
+            <div class="text-sm font-bold accent mb-1 flex items-center gap-2">
+              <img src="/icon.svg" class="w-4 h-4 object-contain" alt="Conclave Icon" />
+              Deliberation Chamber
+            </div>
+            <p class="text-[11px] text-slate-400 leading-normal">Three agent columns fill with grounded reasoning in real-time. Watch Risk, Treasury, and Legal disagree.</p>
           </div>
-          <p class="text-xs text-slate-400">Three agent columns fill with grounded reasoning in real-time. Watch Risk, Treasury, and Legal disagree.</p>
-        </div>
-        <div class="glass rounded-xl p-5">
-          <div class="text-lg font-bold text-slate-200 mb-2">💡 What-If Composer</div>
-          <p class="text-xs text-slate-400">Type any proposal — "Transfer 500 CSPR to marketing" — and watch the council debate it live.</p>
-        </div>
-        <div class="glass rounded-xl p-5">
-          <div class="text-lg font-bold text-red-400 mb-2">✋ Veto Bar</div>
-          <p class="text-xs text-slate-400">45-second countdown with a big red "VETO" button. Humans always have the final say.</p>
-        </div>
-        <div class="glass rounded-xl p-5">
-          <div class="text-lg font-bold text-teal-400 mb-2">⛓️ On-Chain Proof</div>
-          <p class="text-xs text-slate-400">Every verdict is a real Casper Testnet transaction. Click the hash → opens in cspr.live.</p>
+          <div class="glass rounded-xl p-4">
+            <div class="text-sm font-bold text-slate-200 mb-1">💡 What-If Composer</div>
+            <p class="text-[11px] text-slate-400 leading-normal">Type any proposal — "Transfer 500 CSPR" — and watch the council debate it live.</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <div class="text-sm font-bold text-red-400 mb-1">✋ Veto Bar</div>
+            <p class="text-[11px] text-slate-400 leading-normal">45-second countdown with a big red "VETO" button. Humans always have the final say.</p>
+          </div>
+          <div class="glass rounded-xl p-4">
+            <div class="text-sm font-bold text-teal-400 mb-1">⛓️ On-Chain Proof</div>
+            <p class="text-[11px] text-slate-400 leading-normal">Every verdict is a real Casper Testnet transaction. Click the hash → opens in cspr.live.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -333,6 +349,7 @@
       </div>
       <div class="flex items-center gap-4 mt-6">
         <a href="https://conclave.edycu.dev" target="_blank" class="px-5 py-2.5 rounded-lg border border-amber-500/30 bg-amber-500/10 text-amber-400 font-semibold text-xs hover:bg-amber-500/20 hover:border-amber-400 hover:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300">Live Website</a>
+        <a href="https://youtu.be/0rq362abOuk" target="_blank" class="px-5 py-2.5 rounded-lg border border-red-500/30 bg-red-500/10 text-red-400 font-semibold text-xs hover:bg-red-500/20 hover:border-red-400 hover:shadow-[0_0_15px_rgba(239,68,68,0.15)] transition-all duration-300">Pitch Video (YouTube)</a>
         <a href="https://github.com/edycutjong/conclave" target="_blank" class="px-5 py-2.5 rounded-lg border border-slate-800 bg-slate-900/40 text-slate-300 font-semibold text-xs hover:bg-slate-900/60 hover:border-slate-700 hover:shadow-[0_0_15px_rgba(148,163,184,0.05)] transition-all duration-300">Codebase (GitHub)</a>
       </div>
       <div class="mt-6 text-sm text-slate-500">Part of the <span class="text-slate-300 font-semibold">Vouch</span> suite — Casper Agentic Buildathon 2026</div>
