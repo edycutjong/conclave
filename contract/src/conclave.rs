@@ -456,7 +456,7 @@ mod tests {
         let (env, mut c) = setup();
         let id = submit(&env, &mut c, 25_000);
         decide(&mut c, id, 10_000);
-        
+
         // Record verdict again on decided proposal
         let res = c.try_record_verdict(
             id,
@@ -474,7 +474,7 @@ mod tests {
         c.with_tokens(U512::from(50_000u64)).deposit();
         let id = submit(&env, &mut c, 25_000);
         decide(&mut c, id, 10_000);
-        
+
         // Test vetoed reverting approve
         c.veto(id);
         assert_eq!(c.try_approve(id), Err(Error::Vetoed.into()));
@@ -495,7 +495,7 @@ mod tests {
         decide(&mut c, id, 10_000);
         approve_to_quorum(&env, &mut c, id);
         c.execute(id);
-        
+
         assert_eq!(c.try_veto(id), Err(Error::AlreadyExecuted.into()));
     }
 
@@ -506,7 +506,7 @@ mod tests {
         let id = submit(&env, &mut c, 25_000);
         decide(&mut c, id, 10_000);
         approve_to_quorum(&env, &mut c, id);
-        
+
         assert_eq!(c.try_execute(id), Err(Error::InsufficientTreasury.into()));
     }
 
@@ -514,7 +514,7 @@ mod tests {
     fn veto_unauthorized_reverts() {
         let (env, mut c) = setup();
         let id = submit(&env, &mut c, 25_000);
-        
+
         // Set caller to account 5, which is neither owner (0) nor guardian (1)
         env.set_caller(env.get_account(5));
         assert_eq!(c.try_veto(id), Err(Error::NotGuardian.into()));
@@ -525,7 +525,7 @@ mod tests {
         let (env, mut c) = setup();
         let id = submit(&env, &mut c, 25_000);
         decide(&mut c, id, 10_000);
-        
+
         assert_eq!(c.get_target(id), Some(env.get_account(3)));
         assert_eq!(c.get_verdict(id), "APPROVE-WITH-CONDITION".to_string());
         assert_eq!(c.get_confidence(id), 6200);
@@ -534,7 +534,7 @@ mod tests {
         assert_eq!(c.get_quorum(), QUORUM);
         assert_eq!(c.get_count(), 1);
         assert_eq!(c.treasury_balance(), U512::zero());
-        
+
         // Test non-existent target fallback
         assert_eq!(c.get_target(999), None);
     }
