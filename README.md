@@ -18,6 +18,7 @@
   ![Casper](https://img.shields.io/badge/Casper_Network-FF0000?style=flat&logo=casper&logoColor=white)
   [![Contracts](https://img.shields.io/badge/Contracts-Odra%2FRust-ffaa00?logo=rust&logoColor=white)](https://github.com/edycutjong/conclave/tree/main/contract)
   ![Anthropic](https://img.shields.io/badge/AI_Council-Anthropic_Claude-D1A684?style=flat&logo=anthropic)
+  [![MCP](https://img.shields.io/badge/-MCP-D4A27F?logo=modelcontextprotocol)](https://mcpx.dev)
   [![License](https://img.shields.io/badge/License-MIT-yellow)](https://opensource.org/licenses/MIT)
   [![CI](https://github.com/edycutjong/conclave/actions/workflows/ci.yml/badge.svg)](https://github.com/edycutjong/conclave/actions/workflows/ci.yml)
 
@@ -105,6 +106,22 @@ flowchart TD
 3. Install: `pnpm install`
 4. Configure: `cp .env.example .env.local` and add your keys (CSPR.cloud API key, Anthropic key, Testnet keypair)   
 5. Run: `pnpm dev`
+
+### Model Context Protocol (MCP) Setup
+Conclave leverages the Model Context Protocol to ground its AI council agents in live Casper blockchain state.
+
+1. **Demo Mode (Default):** No additional setup is required. The MCP client uses the mock grounding layer (fixtures) to verify contract and balance state.
+2. **Live Testnet Mode:** Set `CONCLAVE_DEMO=false` and provide your `CSPR_CLOUD_API_KEY` in `.env.local` to query live network parameters.
+3. **Casper MCP Server (Docker):** To run the official `msanlisavas/casper-mcp` server locally:
+   ```bash
+   # Run the Casper MCP server Docker container
+   docker pull msanlisavas/casper-mcp:latest
+   docker run -d -p 8080:8080 -e CSPR_CLOUD_API_KEY="your_cspr_cloud_api_key" msanlisavas/casper-mcp:latest
+   ```
+   Add the following line to your `.env.local`:
+   ```ini
+   CASPER_MCP_URL=http://localhost:8080
+   ```
 
 > 💡 **Note for Judges — what's real vs. simulated (no overclaiming):**    
 > - **The AI is real.** Set `ANTHROPIC_API_KEY` and the council makes genuine Claude calls (Opus 4.8 Arbiter + 3 Haiku 4.5 role agents). With **no key**, it falls back to a deterministic engine so the pipeline still runs end-to-end — the **What-If console** (`/api/whatif`) reasons over *any* proposal you type either way.
