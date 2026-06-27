@@ -37,15 +37,9 @@ export default async function Home() {
         {/* ── Hero ── */}
         <header className="animate-fadeIn">
           <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-              {/* Premium Pulsing Animated SVG Emblem */}
-              <svg className="h-8 w-8 text-cyan-400" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="1.5" strokeDasharray="6 6" opacity="0.6" className="animate-spinSlow" />
-                <circle cx="50" cy="50" r="36" stroke="currentColor" strokeWidth="1" opacity="0.3" className="animate-pulse" />
-                <path d="M30 70V45M43 70V38M57 70V38M70 70V45" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" opacity="0.8" />
-                <path d="M24 72H76M26 35C26 28 35 24 50 24C65 24 74 28 74 35" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                <path d="M50 48L52 53L57 53.5L53.5 57L54.5 62L50 59.5L45.5 62L46.5 57L43 53.5L48 53L50 48Z" fill="currentColor" className="animate-pulse" />
-              </svg>
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 shadow-[0_0_15px_rgba(6,182,212,0.15)] overflow-hidden">
+              {/* Premium Logo from public/icon.svg */}
+              <img src="/icon.svg" className="h-9 w-9 object-contain" alt="Conclave Logo" />
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-[0.4em] font-semibold text-cyan-400 text-glow">
