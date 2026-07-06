@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.1](../../compare/v1.5.0...v1.5.1) (2026-07-06)
+
+### 🐛 Bug Fixes
+
+- **deps:** override tmp to >=0.2.6 (resolves high-severity Dependabot alert) (b935d61)
+
+### 📝 Documentation
+
+- add community health files (code of conduct, contributing, issue + PR templates) (18b4cc0)
+- **readme:** link contract package to testnet explorer [skip ci] (b0428fc)
+- **readme:** add step-by-step screenshots walkthrough (f1482fe)
+
+### ✅ Tests
+
+- reach 100% statement and branch coverage (1675325)
+
 ## [1.5.0](../../compare/v1.4.1...v1.5.0) (2026-06-27)
 
 ### 🚀 Features
