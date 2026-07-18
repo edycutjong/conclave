@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1](../../compare/v2.0.0...v2.0.1) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+- add documented package scripts (e2e, lifecycle, deploy:rpc, contract:*, ci) (096ae03)
+
+### 📝 Documentation
+
+- correct unit test count 152 -> 183 (b416a5e)
+
 ## [2.0.0](../../compare/v1.6.0...v2.0.0) (2026-07-18)
 
 ### ⚠️ BREAKING CHANGES
