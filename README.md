@@ -93,7 +93,7 @@ Current DAOs rely heavily on token holder attention, leading to voter apathy and
 | Layer | Technology |
 |---|---|
 | **Frontend** | Next.js 16, React 19, Tailwind CSS v4 |
-| **Testing** | Vitest (152 unit tests), Playwright E2E |
+| **Testing** | Vitest (183 unit tests), Playwright E2E |
 | **Contract** | Odra (Rust) on Casper Testnet |
 | **AI Council** | Claude Opus 4.8 (Arbiter) + Claude Haiku 4.5 (Role Agents) via the Anthropic SDK — falls back to a deterministic engine with no key |
 | **Grounded reads** | Demo: deterministic fixtures · Live (`CONCLAVE_DEMO=false`): CSPR.cloud REST |
@@ -223,7 +223,7 @@ make security-scan     # pnpm audit + license check
 | Layer | Tool | Status |
 |---|---|---|
 | Code Quality | ESLint + TypeScript | ✅ |
-| Unit Testing | Vitest (152 tests) | ✅ |
+| Unit Testing | Vitest (183 tests) | ✅ |
 | E2E Testing | Playwright (3 suites) | ✅ |
 | Security (SAST) | CodeQL | ✅ |
 | Security (SCA) | Dependabot + pnpm audit | ✅ |
