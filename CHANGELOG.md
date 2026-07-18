@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0](../../compare/v1.5.3...v1.6.0) (2026-07-18)
+
+### 🚀 Features
+
+- **chain:** complete FULL on-chain lifecycle — payable deposit via Odra proxy_caller + quorum-enforced execute (50 CSPR treasury transfer); proof rows in README/deck (70d13e8)
+
+### 🔧 Chores
+
+- **deps-dev:** bump tsx from 4.23.0 to 4.23.1 (#26) (2c5c1f8)
+- **deps-dev:** bump @eslint/eslintrc from 3.3.5 to 3.3.6 (#25) (2b659a3)
+- **deps-dev:** bump @tailwindcss/postcss from 4.3.2 to 4.3.3 (#24) (41193cb)
+- **deps:** bump @anthropic-ai/sdk from 0.111.0 to 0.112.2 (#23) (bcc5d32)
+- **deps-dev:** bump tailwindcss from 4.3.2 to 4.3.3 (#22) (b31bddf)
+- **deps:** bump actions/setup-node from 4 to 7 (#21) (b3adf6f)
+
 ## [1.5.3](../../compare/v1.5.2...v1.5.3) (2026-07-18)
 
 ### 🐛 Bug Fixes
