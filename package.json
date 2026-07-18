@@ -17,7 +17,19 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "audit": "pnpm audit --audit-level=high",
+    "ci": "pnpm run audit || true && pnpm run lint && pnpm run typecheck && pnpm run test:coverage",
+    "e2e": "npx playwright test",
+    "e2e:ui": "npx playwright test --ui",
+    "lighthouse": "npx lhci autorun",
+    "seed": "tsx scripts/seed.ts",
+    "deploy:rpc": "tsx scripts/deploy_rpc.ts",
+    "lifecycle": "tsx scripts/run_lifecycle.ts",
+    "fund:execute": "tsx scripts/fund_and_execute.ts",
+    "check:submission": "tsx scripts/check_submission_readiness.ts",
+    "contract:build": "cd contract && cargo odra build && wasm-opt wasm/Conclave.wasm --llvm-memory-copy-fill-lowering --signext-lowering -O2 -o wasm/Conclave.wasm",
+    "contract:deploy": "cd contract && cargo run --bin conclave_livenet --features livenet"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.112.2",
