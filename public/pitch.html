@@ -242,7 +242,7 @@
           </div>
           <div class="glass rounded-xl p-4">
             <div class="text-sm font-bold text-teal-400 mb-1">⛓️ On-Chain Proof</div>
-            <p class="text-[11px] text-slate-400 leading-normal">The governance lifecycle ran as real Testnet transactions — submit → verdict → approve, each hash opens on cspr.live. Demo mode is clearly labeled simulated.</p>
+            <p class="text-[11px] text-slate-400 leading-normal">The FULL governance lifecycle ran as real Testnet transactions — submit → verdict → approve → execute (50 CSPR left the treasury). Every hash opens on cspr.live; demo mode is clearly labeled simulated.</p>
           </div>
         </div>
       </div>
@@ -259,7 +259,7 @@
             <tr><td class="accent font-semibold">Odra Framework</td><td>Governance contract — submit, verdict, approve, veto, execute</td></tr>
             <tr><td class="accent font-semibold">casper-js-sdk</td><td>TransactionV1 signing, broadcasting, and account queries</td></tr>
             <tr><td class="accent font-semibold">CSPR.cloud REST</td><td>Account &amp; contract state reads grounding agent context</td></tr>
-            <tr><td class="accent font-semibold">Casper Testnet</td><td>Live deployed contract package + 4 confirmed on-chain transactions</td></tr>
+            <tr><td class="accent font-semibold">Casper Testnet</td><td>Live deployed package + 9 confirmed txs — full lifecycle incl. funded execute</td></tr>
           </tbody>
         </table>
       </div>
@@ -278,6 +278,8 @@
             <tr><td class="font-semibold">submit_proposal</td><td class="font-mono text-[10px] break-all"><a href="https://testnet.cspr.live/transaction/6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232" target="_blank" class="text-teal-400 hover:underline">6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232</a></td></tr>
             <tr><td class="font-semibold">record_verdict</td><td class="font-mono text-[10px] break-all"><a href="https://testnet.cspr.live/transaction/e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4" target="_blank" class="text-violet-400 hover:underline">e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4</a></td></tr>
             <tr><td class="font-semibold">approve</td><td class="font-mono text-[10px] break-all"><a href="https://testnet.cspr.live/transaction/b45648e9c142f4b16ba079f3c72c0319e4e0ab43853f9706f02819d42a92ef1b" target="_blank" class="text-green-400 hover:underline">b45648e9c142f4b16ba079f3c72c0319e4e0ab43853f9706f02819d42a92ef1b</a></td></tr>
+            <tr><td class="font-semibold">deposit (payable, 60 CSPR)</td><td class="font-mono text-[10px] break-all"><a href="https://testnet.cspr.live/transaction/877d187469ba828bd835eb1a0f9f19c18d43ab3824e93c555f0f331b490c052e" target="_blank" class="text-cyan-400 hover:underline">877d187469ba828bd835eb1a0f9f19c18d43ab3824e93c555f0f331b490c052e</a></td></tr>
+            <tr><td class="font-semibold">execute — 50 CSPR leaves the treasury</td><td class="font-mono text-[10px] break-all"><a href="https://testnet.cspr.live/transaction/7c287d9c0e2ebe6173ab4428f9cf7d3aa2cc24493be5e932d0934276dd0718c1" target="_blank" class="accent hover:underline">7c287d9c0e2ebe6173ab4428f9cf7d3aa2cc24493be5e932d0934276dd0718c1</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -305,7 +307,7 @@
       </div>
       <h3 class="text-sm font-semibold text-slate-300 mt-2">…and vs. other agentic-governance concepts: verifiable, not just plausible</h3>
       <div class="max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="glass rounded-xl p-4"><div class="text-sm font-bold accent mb-1">⛓️ Deployed, not described</div><p class="text-[11px] text-slate-400 leading-normal">Live Odra contract package on Testnet with 4 confirmed transactions — install, submit, verdict, approve.</p></div>
+        <div class="glass rounded-xl p-4"><div class="text-sm font-bold accent mb-1">⛓️ Deployed, not described</div><p class="text-[11px] text-slate-400 leading-normal">Live Odra contract on Testnet with 9 confirmed transactions — the FULL lifecycle including a funded, quorum-enforced execute that moved real CSPR.</p></div>
         <div class="glass rounded-xl p-4"><div class="text-sm font-bold text-teal-400 mb-1">🧠 Real LLM council</div><p class="text-[11px] text-slate-400 leading-normal">Claude Opus arbiter + 3 Haiku role agents, clamped by a deterministic baseline — with a keyless fallback so the pipeline always runs.</p></div>
         <div class="glass rounded-xl p-4"><div class="text-sm font-bold text-violet-400 mb-1">⌨️ Judge-testable live</div><p class="text-[11px] text-slate-400 leading-normal">The What-If console accepts ANY proposal you type — try <code class="font-mono">mint_to</code> and watch all three agents flip to REJECT.</p></div>
         <div class="glass rounded-xl p-4"><div class="text-sm font-bold text-red-400 mb-1">🛡️ Chain-enforced quorum</div><p class="text-[11px] text-slate-400 leading-normal">Even a compromised council can't execute — the Odra contract reverts below quorum, on-chain.</p></div>
@@ -319,7 +321,7 @@
       <div class="max-w-2xl space-y-4">
         <div class="glass rounded-xl p-5 flex items-start gap-4">
           <span class="accent font-mono font-bold text-sm shrink-0 w-16">NOW</span>
-          <div><div class="text-sm font-semibold text-slate-200">Working prototype on Casper Testnet</div><p class="text-xs text-slate-400 mt-1">4 on-chain transactions, 3 AI agents + Arbiter, full E2E tests</p></div>
+          <div><div class="text-sm font-semibold text-slate-200">Working prototype on Casper Testnet</div><p class="text-xs text-slate-400 mt-1">9 on-chain transactions incl. funded execute, 3 AI agents + Arbiter, full E2E tests</p></div>
         </div>
         <div class="glass rounded-xl p-5 flex items-start gap-4">
           <span class="text-teal-400 font-mono font-bold text-sm shrink-0 w-16">30 DAYS</span>
