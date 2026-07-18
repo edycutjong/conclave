@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.3](../../compare/v1.5.2...v1.5.3) (2026-07-18)
+
+### 🐛 Bug Fixes
+
+- **ci:** exclude vendored public/vendor bundle from ESLint (3619e76)
+
+### 📝 Documentation
+
+- **pitch:** finals-round accuracy pass — honest integration claims, on-chain proof rows, finalist badges, launch plan, print-to-PDF, self-hosted Tailwind (acf0d69)
+- **readme:** add @VouchOnCasper follow badge (#17) (3240514)
+
+### 🔧 Chores
+
+- **deps:** bump react-dom from 19.2.4 to 19.2.7 (#20) (f2cca71)
+- **deps:** bump @anthropic-ai/sdk from 0.110.0 to 0.111.0 (#19) (0a59670)
+- **deps-dev:** bump @types/node from 26.1.0 to 26.1.1 (#18) (d89fc8e)
+- **deps-dev:** bump typescript from 5.9.3 to 6.0.3 (#14) (c5d23f3)
+- **deps-dev:** bump @types/node from 20.19.43 to 26.1.0 (#11) (7063641)
+- **deps-dev:** bump @lhci/cli from 0.14.0 to 0.15.1 (#10) (ab33ee8)
+- **deps:** bump next from 16.2.9 to 16.2.10 (#7) (250bcdc)
+- **deps:** regenerate pnpm-lock.yaml to repair duplicate mapping keys (#16) (805683a)
+- **deps:** bump react from 19.2.4 to 19.2.7 (#8) (e213eea)
+- **deps-dev:** bump @tailwindcss/postcss from 4.3.0 to 4.3.2 (#6) (6488427)
+- **deps-dev:** bump tsx from 4.22.4 to 4.23.0 (#15) (bac4652)
+- **deps:** bump @anthropic-ai/sdk from 0.105.0 to 0.110.0 (#13) (572d2cd)
+- **deps-dev:** bump tailwindcss from 4.3.0 to 4.3.2 (#12) (320eb44)
+- **deps-dev:** bump eslint-config-next from 16.2.9 to 16.2.10 (#9) (9ddb881)
+
 ## [1.5.2](../../compare/v1.5.1...v1.5.2) (2026-07-06)
 
 ### 🐛 Bug Fixes
