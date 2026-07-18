@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](../../compare/v1.6.0...v2.0.0) (2026-07-18)
+
+### ⚠️ BREAKING CHANGES
+
+- Vouch 2.0 — Casper Buildathon Finals release (98c020b)
+
+### 🚀 Features
+
+- Vouch 2.0 — Casper Buildathon Finals release (98c020b)
+
+### 📝 Documentation
+
+- explicit DeFi/RWA treasury framing (Beanstalk anchor + on-chain cap-and-execute proof) in README and deck (7f47205)
+- **pitch:** wire live @VouchOnCasper socials into launch plan + closing slide (1e45e5b)
+
 ## [1.6.0](../../compare/v1.5.3...v1.6.0) (2026-07-18)
 
 ### 🚀 Features
