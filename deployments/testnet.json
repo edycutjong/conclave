@@ -8,13 +8,19 @@
     "install": "03c6b2145f06a1357ef63112f11862020ff916614a9c8bf5e584cc236bbbd6f6",
     "submit_proposal": "6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232",
     "record_verdict": "e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4",
-    "approve": "b45648e9c142f4b16ba079f3c72c0319e4e0ab43853f9706f02819d42a92ef1b"
+    "approve": "b45648e9c142f4b16ba079f3c72c0319e4e0ab43853f9706f02819d42a92ef1b",
+    "deposit_proxy_caller": "877d187469ba828bd835eb1a0f9f19c18d43ab3824e93c555f0f331b490c052e",
+    "submit_proposal_1": "f715e1353ebfba1fd211abc8de29fd58edb1dbd8c7bd6bae2e09edbd833998ba",
+    "record_verdict_1": "4588b8c2cdedd2f5fae650c50e2f2890a7ecb544d36d8e9fe66115dfb89193ca",
+    "approve_1": "ac12157b169df7d660a4ed9adee6c747376cc4f1d35a68bb8e2e9a8cc2536cff",
+    "execute_1": "7c287d9c0e2ebe6173ab4428f9cf7d3aa2cc24493be5e932d0934276dd0718c1"
   },
   "explorerBase": "https://testnet.cspr.live/transaction/",
   "notes": [
     "Installed via scripts/deploy_rpc.ts (casper-js-sdk + RPC polling; Odra livenet SSE deploy is incompatible with CSPR.cloud).",
     "Wasm lowered to MVP with wasm-opt --llvm-memory-copy-fill-lowering (Casper VM rejects bulk-memory).",
     "Governance lifecycle (submit_proposal -> record_verdict -> approve) confirmed on-chain via scripts/run_lifecycle.ts.",
-    "execute (capped treasury transfer) needs a funded contract treasury (payable deposit via Odra proxy) — left as a follow-up."
+    "2026-07-18: treasury funded via Odra proxy_caller_with_return.wasm session (payable deposit, 60 CSPR) \u2014 scripts/fund_and_execute.ts replicates odra-casper-rpc-client's deploy_entrypoint_call_with_proxy ABI (package_hash/entry_point/args/attached_value/amount).",
+    "2026-07-18: FULL lifecycle confirmed for proposal 1: submit (100 CSPR requested) -> record_verdict (capped to 50) -> approve -> execute; 50 CSPR left the treasury under on-chain quorum enforcement."
   ]
 }

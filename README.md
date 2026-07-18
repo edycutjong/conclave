@@ -177,9 +177,14 @@ Conclave leverages the Model Context Protocol to ground its AI council agents in
 | `submit_proposal` | [`6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232` ↗](https://testnet.cspr.live/transaction/6cc8d49d36d6c4ad3d030dfd1b6abecd5c3c3d39baa7c6bb2abd47a2e8593232) |
 | `record_verdict` | [`e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4` ↗](https://testnet.cspr.live/transaction/e7b6f26caeeabf43fbe174ed68c2bdb49a982753385bc6abcf006e0597c699c4) |
 | `approve` | [`b45648e9c142f4b16ba079f3c72c0319e4e0ab43853f9706f02819d42a92ef1b` ↗](https://testnet.cspr.live/transaction/b45648e9c142f4b16ba079f3c72c0319e4e0ab43853f9706f02819d42a92ef1b) |
+| `deposit` (payable, via proxy_caller — 60 CSPR into the treasury) | [`877d187469ba828bd835eb1a0f9f19c18d43ab3824e93c555f0f331b490c052e` ↗](https://testnet.cspr.live/transaction/877d187469ba828bd835eb1a0f9f19c18d43ab3824e93c555f0f331b490c052e) |
+| `submit_proposal` #1 (requests 100 CSPR) | [`f715e1353ebfba1fd211abc8de29fd58edb1dbd8c7bd6bae2e09edbd833998ba` ↗](https://testnet.cspr.live/transaction/f715e1353ebfba1fd211abc8de29fd58edb1dbd8c7bd6bae2e09edbd833998ba) |
+| `record_verdict` #1 (council caps at 50 CSPR) | [`4588b8c2cdedd2f5fae650c50e2f2890a7ecb544d36d8e9fe66115dfb89193ca` ↗](https://testnet.cspr.live/transaction/4588b8c2cdedd2f5fae650c50e2f2890a7ecb544d36d8e9fe66115dfb89193ca) |
+| `approve` #1 | [`ac12157b169df7d660a4ed9adee6c747376cc4f1d35a68bb8e2e9a8cc2536cff` ↗](https://testnet.cspr.live/transaction/ac12157b169df7d660a4ed9adee6c747376cc4f1d35a68bb8e2e9a8cc2536cff) |
+| **`execute` #1 — 50 CSPR moved out of the treasury, quorum-enforced** | [`7c287d9c0e2ebe6173ab4428f9cf7d3aa2cc24493be5e932d0934276dd0718c1` ↗](https://testnet.cspr.live/transaction/7c287d9c0e2ebe6173ab4428f9cf7d3aa2cc24493be5e932d0934276dd0718c1) |
 | Machine-readable record | [`deployments/testnet.json`](deployments/testnet.json) |
 
-The AI council's governance decisions are recorded on-chain: a proposal is **submitted**, the verdict **recorded**, and **approved** — all real Testnet transactions. Reproduce with `pnpm deploy:rpc` (install) + `pnpm lifecycle` (governance) — see [LIVE_TESTNET.md](LIVE_TESTNET.md).
+The **complete** governance lifecycle is on-chain, including the final transfer: proposal **submitted** → verdict **recorded** (the 100 CSPR request capped to 50) → **approved** → **executed** with real CSPR leaving the treasury. The treasury was funded through Odra's payable `deposit` using a `proxy_caller` session wasm (casper-js-sdk cannot attach CSPR to a contract call — see [`scripts/fund_and_execute.ts`](scripts/fund_and_execute.ts)). Reproduce with `pnpm deploy:rpc` (install) + `pnpm lifecycle` (governance) + `npx tsx scripts/fund_and_execute.ts` (funded execute) — see [LIVE_TESTNET.md](LIVE_TESTNET.md).
 
 > _Originality: all code is original and newly developed for the Casper Agentic Buildathon 2026; shared `@vouch/*` packages are authored for this submission._
 
