@@ -61,29 +61,33 @@ export function ProposalComposer() {
   const set = <K extends keyof Form>(key: K, value: Form[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
-  const convene = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    setResult(null);
-    try {
-      const res = await fetch("/api/whatif", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Deliberation failed");
-      setResult(data as WhatIfResponse);
-    } catch (err) {
-      setError((err as Error).message);
-    } finally {
-      setLoading(false);
-    }
-  }, [form]);
+  const convene = useCallback(
+    async (proposal?: Form) => {
+      setLoading(true);
+      setError(null);
+      setResult(null);
+      try {
+        const res = await fetch("/api/whatif", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(proposal ?? form),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? "Deliberation failed");
+        setResult(data as WhatIfResponse);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [form],
+  );
 
+  // One click to the payoff: a preset fills the form AND convenes the council.
   const applyPreset = (key: keyof typeof PRESETS) => {
     setForm(PRESETS[key]);
-    setResult(null);
+    void convene(PRESETS[key]);
   };
 
   const inputCls =
@@ -143,7 +147,7 @@ export function ProposalComposer() {
 
         <div className="mt-4 flex items-center gap-3">
           <button
-            onClick={convene}
+            onClick={() => void convene()}
             disabled={loading}
             className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 text-sm font-semibold text-cyan-300 transition-all hover:border-cyan-400/50 hover:bg-cyan-500/20 disabled:opacity-50"
           >
