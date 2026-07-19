@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](../../compare/v2.0.1...v2.1.0) (2026-07-19)
+
+### 🚀 Features
+
+- **ux:** preset chips convene the council in one click (55284cc)
+
 ## [2.0.1](../../compare/v2.0.0...v2.0.1) (2026-07-18)
 
 ### 🐛 Bug Fixes
