@@ -44,6 +44,8 @@ pub enum Error {
     InsufficientTreasury = 10,
     /// The verdict approved a zero transfer (e.g. a REJECT) — nothing to execute.
     ZeroApprovedAmount = 11,
+    /// Caller is not a registered council signer, so its approval cannot count toward quorum.
+    NotSigner = 12,
 }
 
 /// Emitted when a decided, approved, non-vetoed proposal is executed.
@@ -76,6 +78,9 @@ pub struct Conclave {
     guardian: Var<Address>,
     quorum: Var<u32>,
     count: Var<u64>,
+    /// Registered council signers. Only these addresses' approvals count toward quorum,
+    /// so quorum is a threshold over a *defined* set — not just "N distinct callers".
+    signer: Mapping<Address, bool>,
     // --- proposal record (keyed by id) ---
     target: Mapping<u64, Address>,
     entrypoint: Mapping<u64, String>,
@@ -99,10 +104,31 @@ impl Conclave {
     /// Deploy with the approval `quorum` and the `guardian` who can veto.
     /// The deployer becomes `owner` (the council orchestrator key).
     pub fn init(&mut self, quorum: u32, guardian: Address) {
-        self.owner.set(self.env().caller());
+        let deployer = self.env().caller();
+        self.owner.set(deployer);
         self.guardian.set(guardian);
         self.quorum.set(quorum);
         self.count.set(0);
+        // The orchestrator key is a signer by default; register the remaining council
+        // keys post-deploy with `add_signer` before their approvals can count.
+        self.signer.set(&deployer, true);
+    }
+
+    /// Owner-only: register a council signer whose `approve` counts toward quorum.
+    pub fn add_signer(&mut self, signer: Address) {
+        self.assert_owner();
+        self.signer.set(&signer, true);
+    }
+
+    /// Owner-only: revoke a council signer. Approvals already collected are unaffected.
+    pub fn remove_signer(&mut self, signer: Address) {
+        self.assert_owner();
+        self.signer.set(&signer, false);
+    }
+
+    /// Whether `who` is a registered council signer.
+    pub fn is_signer(&self, who: Address) -> bool {
+        self.signer.get_or_default(&who)
     }
 
     /// Fund the governance treasury. Attached CSPR is credited to the contract purse.
@@ -165,6 +191,9 @@ impl Conclave {
             self.env().revert(Error::AlreadyExecuted);
         }
         let caller = self.env().caller();
+        if !self.signer.get_or_default(&caller) {
+            self.env().revert(Error::NotSigner);
+        }
         let mut approvers = self.approvers.get_or_default(&proposal_id);
         if approvers.contains(&caller) {
             self.env().revert(Error::AlreadyApproved);
@@ -307,13 +336,18 @@ mod tests {
     fn setup() -> (odra::host::HostEnv, ConclaveHostRef) {
         let env = odra_test::env();
         let guardian = env.get_account(1);
-        let contract = Conclave::deploy(
+        let mut contract = Conclave::deploy(
             &env,
             ConclaveInitArgs {
                 quorum: QUORUM,
                 guardian,
             },
         );
+        // Register the council signer keys used by the approval helpers (accounts 4-6).
+        // Deployer (account 0) is the owner, so these calls are owner-authorized.
+        for i in 4..=6 {
+            contract.add_signer(env.get_account(i));
+        }
         (env, contract)
     }
 
@@ -421,6 +455,40 @@ mod tests {
         c.approve(id);
         assert_eq!(c.try_approve(id), Err(Error::AlreadyApproved.into()));
         assert_eq!(c.get_approvals(id), 1);
+    }
+
+    #[test]
+    fn approval_from_non_signer_reverts() {
+        // Regression: quorum must be a threshold over the *registered* council set,
+        // not just "N distinct addresses". An unregistered key cannot count.
+        let (env, mut c) = setup();
+        let id = submit(&env, &mut c, 25_000);
+        decide(&mut c, id, 10_000);
+
+        env.set_caller(env.get_account(9)); // never registered via add_signer
+        assert_eq!(c.try_approve(id), Err(Error::NotSigner.into()));
+        assert_eq!(c.get_approvals(id), 0);
+    }
+
+    #[test]
+    fn removed_signer_cannot_approve() {
+        let (env, mut c) = setup();
+        let id = submit(&env, &mut c, 25_000);
+        decide(&mut c, id, 10_000);
+
+        c.remove_signer(env.get_account(4)); // owner revokes a council key
+        env.set_caller(env.get_account(4));
+        assert_eq!(c.try_approve(id), Err(Error::NotSigner.into()));
+    }
+
+    #[test]
+    fn add_signer_is_owner_only() {
+        let (env, mut c) = setup();
+        env.set_caller(env.get_account(5));
+        assert_eq!(
+            c.try_add_signer(env.get_account(9)),
+            Err(Error::NotOwner.into())
+        );
     }
 
     #[test]
