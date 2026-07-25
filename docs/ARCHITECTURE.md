@@ -3,8 +3,8 @@
 ## Tech stack (optimized for solo speed + the verified Casper surface)
 - **Frontend:** Next.js 16 (App Router) + React 19 + Tailwind CSS v4. Deployed to Vercel.
 - **Agent orchestrator:** Node/TypeScript service (Next.js Route Handlers + a long-running worker). LLM tool-calling via the Anthropic SDK (Claude) — `claude-opus-4-8` for the Arbiter, `claude-haiku-4-5` for the three role agents (cheap, parallel) with prompt caching.
-- **Chain reads:** **Casper MCP server** (`msanlisavas/casper-mcp`, C#/.NET, run via Docker) exposed to the agents as tools; **CSPR.cloud** REST/streaming for history.
-- **Signing/execution:** **casper-js-sdk** with a locally loaded PEM key (`Keys.Ed25519.loadKeyPairFromPrivateFile(ORCHESTRATOR_KEY_PATH)`). Agents sign `TransactionV1` payloads autonomously — no browser wallet popup. CSPR.click is used only for the **frontend** human veto panel.
+- **Grounding / chain reads:** agents are grounded on a **deterministic fact layer** (`src/core/whatif.ts` `deriveFacts`, seeded from on-chain fixtures) that maps to the **Casper read-tool surface** — the `msanlisavas/casper-mcp` schema plus **CSPR.cloud** REST for history. By default (and in the demo) the fact layer is deterministic; wiring the live read backend (MCP server / CSPR.cloud REST, `CONCLAVE_DEMO=false`) into the deliberation path is optional.
+- **Signing/execution:** **casper-js-sdk** with a locally loaded PEM key (`Keys.Ed25519.loadKeyPairFromPrivateFile(ORCHESTRATOR_KEY_PATH)`). The backend Executor signs `TransactionV1` payloads autonomously — no browser wallet popup.
 - **On-chain:** one **Odra** (Rust) governance contract on Casper **Testnet** (`casper:casper-test`).
 - **State:** in-memory server-side store (`src/lib/store.ts`, a Next.js singleton seeded from fixtures) tracking the full deliberation lifecycle; the immutable record lives on-chain (transcript hash) — no external DB.
 
@@ -26,7 +26,7 @@ flowchart TD
     end
     ORC --> RA & TA & LA
     RA & TA & LA --> AR
-    RA & TA & LA -->|read state| MCP[Casper MCP Server]
+    RA & TA & LA -->|fact layer (MCP read shape)| MCP[Casper MCP Server]
     TA -->|history| CLOUD[CSPR.cloud APIs]
     MCP --> TN[(Casper Testnet)]
     AR -->|verdict + quorum| MS[Approval Consensus off-chain]
@@ -61,7 +61,7 @@ Entrypoints (kept intentionally small — this is the only Rust we write):
 - **Audit:** `transcript_hash = sha256(canonical_transcript)`; the same canonicalization is reproducible client-side to verify the on-chain hash.
 
 ## Key libraries / SDKs
-`casper-js-sdk` (PEM-key signing), Casper MCP (Docker, reads), CSPR.cloud SDK/REST, CSPR.click (frontend veto panel only), Odra + `cargo-odra`, Anthropic SDK, Next.js 16, Tailwind CSS v4.
+`casper-js-sdk` (PEM-key signing), Casper MCP read schema / CSPR.cloud REST (optional live read backend the fact layer maps to), Odra + `cargo-odra`, Anthropic SDK, Next.js 16, Tailwind CSS v4.
 
 ## Boilerplate
-Start from `npx create-next-app` (no boilerplates.json match for Casper governance). Add the CSPR.click skill per its `SKILL.md`, and scaffold the contract with `cargo odra new`.
+Start from `npx create-next-app` (no boilerplates.json match for Casper governance). Wire execution through `casper-js-sdk` (backend PEM key), and scaffold the contract with `cargo odra new`.

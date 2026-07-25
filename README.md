@@ -31,7 +31,7 @@
 
 ## 📸 See it in Action
 
-> **A council of AI agents debates every DAO proposal, grounds it in live Casper state, collects approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet.**
+> **A council of AI agents debates every DAO proposal, grounds it in a deterministic Casper fact layer, collects approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet.**
 
 ### 1. Conclave Governance Dashboard
 <div align="center">
@@ -81,7 +81,7 @@
 Current DAOs rely heavily on token holder attention, leading to voter apathy and unverified contract executions.
 **Conclave** instantiates a council of AI agents (Risk, Treasury, Legal) that reason over a proposal grounded in a deterministic Casper fact layer, then an Arbiter reconciles them into a verdict for a human veto — and only then does the approved transfer execute on Testnet.
 
-**Where this bites in DeFi & RWA:** any on-chain treasury that moves real value on a vote is exposed — DeFi protocol treasuries paying grants and LP incentives, and increasingly **RWA funds whose cap tables and distributions live on-chain** (exactly the asset class Casper targets). One malicious or careless proposal is enough: Beanstalk lost **$182M to a single flash-loan governance proposal** (Apr 2022). Conclave is the control layer for that treasury: the council checks every outbound transfer against the charter and *live* account state, caps oversized requests (our on-chain lifecycle shows a 100 CSPR request capped to 50 and executed under quorum), and hard-rejects privilege escalation like `mint_to` — before a single mote leaves the treasury.
+**Where this bites in DeFi & RWA:** any on-chain treasury that moves real value on a vote is exposed — DeFi protocol treasuries paying grants and LP incentives, and increasingly **RWA funds whose cap tables and distributions live on-chain** (exactly the asset class Casper targets). One malicious or careless proposal is enough: Beanstalk lost **$182M to a single flash-loan governance proposal** (Apr 2022). Conclave is the control layer for that treasury: the council checks every outbound transfer against the charter and the grounded fact-layer account state, caps oversized requests (our on-chain lifecycle shows a 100 CSPR request capped to 50 and executed under quorum), and hard-rejects privilege escalation like `mint_to` — before a single mote leaves the treasury.
 
 **Key Features:**
 - ⚡ **Real multi-agent council:** with `ANTHROPIC_API_KEY` set, three role agents run on **Claude Haiku 4.5** and the Arbiter on **Claude Opus 4.8** (Anthropic SDK, structured outputs) — [`src/agents/llm.ts`](src/agents/llm.ts). Each agent only cites numbers from the deterministic fact layer; it can't invent balances.
@@ -99,7 +99,7 @@ Current DAOs rely heavily on token holder attention, leading to voter apathy and
 | **Contract** | Odra (Rust) on Casper Testnet |
 | **AI Council** | Claude Opus 4.8 (Arbiter) + Claude Haiku 4.5 (Role Agents) via the Anthropic SDK — falls back to a deterministic engine with no key |
 | **Grounded reads** | Demo: deterministic fixtures · Live (`CONCLAVE_DEMO=false`): CSPR.cloud REST |
-| **Signing** | `casper-js-sdk` (backend PEM key) for autonomous execution · CSPR.click for the frontend veto panel |
+| **Signing** | `casper-js-sdk` (backend PEM key) for autonomous execution |
 
 ### System Data Flow
 
