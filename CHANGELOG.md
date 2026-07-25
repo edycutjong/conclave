@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.1](../../compare/v2.2.0...v2.2.1) (2026-07-25)
+
+### 🐛 Bug Fixes
+
+- honest grounding copy + repair ARCHITECTURE mermaid diagram (f78db93)
+
+### 📝 Documentation
+
+- remove stale error-state screenshots (superseded, unreferenced) (0dd826d)
+- drop unused screenshots (02-select-proposal, 07-whatif-clean-grant) (a73e3fc)
+- refresh product screenshots; drop stale error-state + unused shots (2f11a02)
+- honest grounding/MCP wording + untrack kitchen docs (1477041)
+
 ## [2.2.0](../../compare/v2.1.2...v2.2.0) (2026-07-25)
 
 ### 🚀 Features
