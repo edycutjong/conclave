@@ -10,6 +10,8 @@
   [![Pitch Deck](https://img.shields.io/badge/📊_Pitch-Deck-f59e0b?style=for-the-badge)](https://conclave.edycu.dev/pitch.html)
   [![Pitch Video](https://img.shields.io/badge/🎬_Pitch-Video-ef4444?style=for-the-badge)](https://youtu.be/0rq362abOuk)
   [![Built for Casper Agentic Buildathon](https://img.shields.io/badge/DoraHacks-Casper_Agentic_Buildathon-8b5cf6?style=for-the-badge)](https://dorahacks.io/hackathon/casper-agentic-buildathon)
+  [![Casper Buildathon 2026 — FINALS](https://img.shields.io/badge/DoraHacks-Buildathon_2026_FINALS-a855f7?style=for-the-badge)](https://dorahacks.io/hackathon/casper-agentic-buildathon-finals)
+  [![Vouch Suite Hub](https://img.shields.io/badge/🛡️_Vouch-Suite_Hub-7c3aed?style=for-the-badge)](https://vouch.edycu.dev)
   [![Follow on X](https://img.shields.io/badge/Follow-%40VouchOnCasper-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/VouchOnCasper)
 
   <br/>
