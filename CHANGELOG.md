@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0](../../compare/v2.1.2...v2.2.0) (2026-07-25)
+
+### 🚀 Features
+
+- **contract:** restrict quorum approvals to registered council signers (3bdcd0b)
+
+### 📝 Documentation
+
+- **readme:** link Casper Buildathon 2026 FINALS + Vouch suite hub (15816bd)
+
 ## [2.1.2](../../compare/v2.1.1...v2.1.2) (2026-07-25)
 
 ### 🐛 Bug Fixes
