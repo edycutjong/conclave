@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.3](../../compare/v2.2.2...v2.2.3) (2026-07-25)
+
+### 🐛 Bug Fixes
+
+- **honesty:** regenerate OG preview image to match the real stack (1fd9a01)
+
 ## [2.2.2](../../compare/v2.2.1...v2.2.2) (2026-07-25)
 
 ### 🐛 Bug Fixes
