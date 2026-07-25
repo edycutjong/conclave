@@ -55,4 +55,10 @@ fn main() {
     println!("   owner = guardian : {:?}", guardian);
     println!();
     println!("Set CONCLAVE_CONTRACT_HASH in .env.local to the hash above (strip any prefix).");
+    println!();
+    println!(
+        "⚠️  Only the deployer is a signer so far. Register the other {} council key(s) with",
+        quorum.saturating_sub(1)
+    );
+    println!("   `add_signer(<address>)` (owner-only) before their approvals can reach quorum.");
 }
