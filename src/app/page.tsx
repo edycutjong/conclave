@@ -5,7 +5,7 @@ import { version } from "../../package.json";
 
 const FLOW = [
   "Proposal arrives (target, entrypoint, args, rationale)",
-  "Risk / Treasury / Legal agents read live Testnet state via Casper MCP",
+  "Risk / Treasury / Legal agents ground claims in a deterministic Casper fact layer (MCP read shape)",
   "Arbiter reconciles the debate into a verdict + confidence",
   "Council approvals reach quorum (off-chain consensus)",
   "Human veto window — an always-visible kill-switch",
@@ -57,8 +57,8 @@ export default async function Home() {
             Agentic governance that reads the contract before it signs.
           </p>
           <p className="mt-4 max-w-3xl text-sm sm:text-base leading-relaxed text-slate-400">
-            A council of AI agents debates every DAO treasury proposal, grounds it in live
-            Casper state, collects council approvals off-chain, and — after a human veto
+            A council of AI agents debates every DAO treasury proposal, grounds each claim in a
+            deterministic Casper fact layer, collects council approvals off-chain, and — after a human veto
             window — executes the approved transaction on Casper Testnet. The visible
             disagreement between agents <em className="text-slate-300">is</em> the trust mechanism.
           </p>
