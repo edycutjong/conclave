@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1](../../compare/v2.1.0...v2.1.1) (2026-07-25)
+
+### 🐛 Bug Fixes
+
+- **security:** override brace-expansion, postcss, sharp to patched versions (fc0daea)
+
+### 🔧 Chores
+
+- **deps:** bump react 19.2.8, next 16.2.11, eslint-config-next 16.2.11, @anthropic-ai/sdk 0.115.0 (4e6176a)
+
 ## [2.1.0](../../compare/v2.0.1...v2.1.0) (2026-07-19)
 
 ### 🚀 Features
