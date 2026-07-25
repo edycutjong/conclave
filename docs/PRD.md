@@ -15,7 +15,7 @@ Conclave convenes a **council of specialized AI agents** that deliberate over ev
 - **Legal/Charter Agent** — tests the proposal against the DAO's charter and prior rulings.
 - **Arbiter** — reconciles the debate into a verdict + confidence, under a quorum rule.
 
-The agents read real chain state through the **Casper MCP server**, assemble their approvals into an off-chain **quorum consensus**, and — after a human **veto window** — execute the approved transaction via `casper-js-sdk` (the CSPR.click AI Agent Skill) against an **Odra governance contract** on Casper Testnet, which enforces the quorum threshold on-chain (`approve` / threshold-guarded `execute`). The full transcript is hashed on-chain for an immutable audit trail. *(The hosted MCP `AwaitingDeploy` multisig helpers are 403-gated on free-tier keys and not used — the contract does multisig natively.)* The visible disagreement between agents *is* the trust mechanism — and the demo.
+The agents are grounded on a deterministic fact layer (MCP/CSPR.cloud read schema; live reads optional), assemble their approvals into an off-chain **quorum consensus**, and — after a human **veto window** — execute the approved transaction via `casper-js-sdk` (backend PEM key) against an **Odra governance contract** on Casper Testnet, which enforces the quorum threshold on-chain (`approve` / threshold-guarded `execute`). The full transcript is hashed on-chain for an immutable audit trail. *(The hosted MCP `AwaitingDeploy` multisig helpers are 403-gated on free-tier keys and not used — the contract does multisig natively.)* The visible disagreement between agents *is* the trust mechanism — and the demo.
 
 ## DeFi / RWA framing (why this is a DeFi project, not just governance)
 Conclave reviews and executes **DeFi treasury actions** — the proposals it deliberates over are concretely financial: reallocating treasury into a lending pool or LP position, changing a protocol risk parameter (LTV, fee, cap), moving funds between vaults, or paying a vendor in CSPR/CEP-18/RWA-backed tokens. Its agents read live DeFi state (balances, pool params, runway) and the executed transaction *is* a DeFi action on Casper. So Conclave sits squarely in the "Agentic AI × DeFi" emphasis: it's autonomous risk/treasury management for on-chain capital, with governance as the control surface.
@@ -25,7 +25,7 @@ Conclave reviews and executes **DeFi treasury actions** — the proposals it del
 - **Secondary:** Multisig treasuries / DAO tooling teams who want an autonomous DeFi "review layer" that still keeps a human kill-switch.
 
 ## The ONE core flow (narrow + deep)
-> **A proposal arrives → Risk/Treasury/Legal agents read live chain state and debate → Arbiter reaches a quorum verdict → approvals assembled into an off-chain consensus → human veto window → the Executor signs the real Testnet transaction (Odra `execute`, quorum-guarded on-chain) → transcript hash recorded on-chain, deploy hash shown on the explorer.**
+> **A proposal arrives → Risk/Treasury/Legal agents, grounded on a deterministic fact layer (MCP/CSPR.cloud read schema; live reads optional), debate → Arbiter reaches a quorum verdict → approvals assembled into an off-chain consensus → human veto window → the Executor signs the real Testnet transaction (Odra `execute`, quorum-guarded on-chain) → transcript hash recorded on-chain, deploy hash shown on the explorer.**
 
 ## Core Features (MVP)
 1. **Proposal intake** — paste/submit a proposal (target contract, entrypoint, args, rationale).
@@ -33,7 +33,7 @@ Conclave reviews and executes **DeFi treasury actions** — the proposals it del
 3. **Multi-agent deliberation** — three role-specialized agents argue; each can re-query chain state; an Arbiter applies the quorum rule.
 4. **Quorum approval** — the orchestrator assembles role-agent approvals into an off-chain consensus; the **Odra contract enforces the quorum threshold on-chain** (`approve` + threshold-guarded `execute`). *(The hosted MCP `AwaitingDeploy` helpers are 403-gated on free-tier keys and unused.)*
 5. **Human veto window** — a countdown before execution; one click aborts.
-6. **Autonomous execution** — CSPR.click signs/sends the approved `TransactionV1` to the Odra governance contract.
+6. **Autonomous execution** — the Executor signs via `casper-js-sdk` and sends the approved `TransactionV1` to the Odra governance contract.
 7. **Immutable audit** — the deliberation transcript is hashed and written on-chain alongside the executed deploy hash.
 
 ## User Stories

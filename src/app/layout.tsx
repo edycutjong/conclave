@@ -20,14 +20,14 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Conclave — agentic governance that reads the contract before it signs",
   description:
-    "A council of AI agents debates every DAO proposal, grounds it in live Casper state, collects council approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet. Part of the Vouch suite.",
+    "A council of AI agents debates every DAO proposal, grounds it in a deterministic Casper fact layer, collects council approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet. Part of the Vouch suite.",
   icons: {
     icon: "/icon.png",
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Conclave — agentic governance that reads the contract before it signs",
-    description: "A council of AI agents debates every DAO proposal, grounds it in live Casper state, collects council approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet. Part of the Vouch suite.",
+    description: "A council of AI agents debates every DAO proposal, grounds it in a deterministic Casper fact layer, collects council approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet. Part of the Vouch suite.",
     url: "https://conclave.edycu.dev",
     siteName: "Conclave",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Conclave — agentic governance that reads the contract before it signs",
-    description: "A council of AI agents debates every DAO proposal, grounds it in live Casper state, collects council approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet. Part of the Vouch suite.",
+    description: "A council of AI agents debates every DAO proposal, grounds it in a deterministic Casper fact layer, collects council approvals off-chain, and — after a human veto window — executes the approved transaction on Casper Testnet. Part of the Vouch suite.",
     images: ["/og-image.png"],
   },
 };
