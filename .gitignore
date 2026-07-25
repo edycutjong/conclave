@@ -63,3 +63,6 @@ next-env.d.ts
 _shared/
 _designs/
 assets/
+# kitchen docs — must never be in the public build repo
+AGENTS.md
+CLAUDE.md

@@ -79,12 +79,12 @@
 
 ## 💡 The Problem & Solution
 Current DAOs rely heavily on token holder attention, leading to voter apathy and unverified contract executions.
-**Conclave** instantiates a council of AI agents (Risk, Treasury, Legal) that reason over a proposal grounded in Casper account state, then an Arbiter reconciles them into a verdict for a human veto — and only then does the approved transfer execute on Testnet.
+**Conclave** instantiates a council of AI agents (Risk, Treasury, Legal) that reason over a proposal grounded in a deterministic Casper fact layer, then an Arbiter reconciles them into a verdict for a human veto — and only then does the approved transfer execute on Testnet.
 
 **Where this bites in DeFi & RWA:** any on-chain treasury that moves real value on a vote is exposed — DeFi protocol treasuries paying grants and LP incentives, and increasingly **RWA funds whose cap tables and distributions live on-chain** (exactly the asset class Casper targets). One malicious or careless proposal is enough: Beanstalk lost **$182M to a single flash-loan governance proposal** (Apr 2022). Conclave is the control layer for that treasury: the council checks every outbound transfer against the charter and *live* account state, caps oversized requests (our on-chain lifecycle shows a 100 CSPR request capped to 50 and executed under quorum), and hard-rejects privilege escalation like `mint_to` — before a single mote leaves the treasury.
 
 **Key Features:**
-- ⚡ **Real multi-agent council:** with `ANTHROPIC_API_KEY` set, three role agents run on **Claude Haiku 4.5** and the Arbiter on **Claude Opus 4.8** (Anthropic SDK, structured outputs) — [`src/agents/llm.ts`](src/agents/llm.ts). Each agent only cites numbers from the grounded read layer; it can't invent balances.
+- ⚡ **Real multi-agent council:** with `ANTHROPIC_API_KEY` set, three role agents run on **Claude Haiku 4.5** and the Arbiter on **Claude Opus 4.8** (Anthropic SDK, structured outputs) — [`src/agents/llm.ts`](src/agents/llm.ts). Each agent only cites numbers from the deterministic fact layer; it can't invent balances.
 - 🛡️ **Deterministic guardrail:** every LLM verdict is checked against a pure `reconcile()` baseline ([`src/core/quorum.ts`](src/core/quorum.ts)); the approved amount is computed from the verdict and clamped, and a charter **§5** violation (self-mint / privilege escalation) is a hard, non-overridable **REJECT**.
 - 🧪 **What-If Console (the live demo):** compose *any* proposal (target, entrypoint, amount) and watch the council reason it to **APPROVE / CAP / REJECT** over your input — not a canned script (`/api/whatif` → [`src/core/whatif.ts`](src/core/whatif.ts)).
 - 🎚️ **Graceful fallback:** with no API key, the council degrades to a deterministic engine, so the full deliberate → veto → execute pipeline always runs (great for keyless judges).
@@ -150,21 +150,22 @@ flowchart TD
 4. Configure: `cp .env.example .env.local` and add your keys (CSPR.cloud API key, Anthropic key, Testnet keypair)   
 5. Run: `pnpm dev`
 
-### Model Context Protocol (MCP) Setup
-Conclave leverages the Model Context Protocol to ground its AI council agents in live Casper blockchain state.
+### Grounding & the Casper read surface (MCP)
+Conclave grounds its AI council on a **deterministic fact layer** — agents may only
+cite figures from this layer (treasury balance, known counterparties, limits), so they
+can't invent numbers. By default, and in the demo, that layer is seeded from on-chain
+fixtures. The code maps this grounding to a Casper read-tool surface (the
+`msanlisavas/casper-mcp` schema / CSPR.cloud REST); wiring that live backend into the
+deliberation path is **roadmap** — today's load-bearing on-chain steps are the Odra
+quorum contract and casper-js-sdk execution, both real and backed by confirmed Testnet
+transactions.
 
-1. **Demo Mode (Default):** No additional setup is required. The MCP client uses the mock grounding layer (fixtures) to verify contract and balance state.
-2. **Live Testnet Mode:** Set `CONCLAVE_DEMO=false` and provide your `CSPR_CLOUD_API_KEY` in `.env.local` to query live network parameters.
-3. **Casper MCP Server (Docker):** To run the official `msanlisavas/casper-mcp` server locally:
-   ```bash
-   # Run the Casper MCP server Docker container
-   docker pull msanlisavas/casper-mcp:latest
-   docker run -d -p 8080:8080 -e CSPR_CLOUD_API_KEY="your_cspr_cloud_api_key" msanlisavas/casper-mcp:latest
-   ```
-   Add the following line to your `.env.local`:
-   ```ini
-   CASPER_MCP_URL=http://localhost:8080
-   ```
+Optional — run the Casper MCP server locally as a live read backend:
+```bash
+docker pull msanlisavas/casper-mcp:latest
+docker run -d -p 8080:8080 -e CSPR_CLOUD_API_KEY="your_cspr_cloud_api_key" msanlisavas/casper-mcp:latest
+```
+then set `CASPER_MCP_URL=http://localhost:8080` in `.env.local`.
 
 > 💡 **Note for Judges — what's real vs. simulated (no overclaiming):**    
 > - **The AI is real.** Set `ANTHROPIC_API_KEY` and the council makes genuine Claude calls (Opus 4.8 Arbiter + 3 Haiku 4.5 role agents). With **no key**, it falls back to a deterministic engine so the pipeline still runs end-to-end — the **What-If console** (`/api/whatif`) reasons over *any* proposal you type either way.
