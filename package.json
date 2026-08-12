@@ -34,9 +34,9 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
     "casper-js-sdk": "^5.0.12",
-    "next": "16.2.11",
+    "next": "16.3.0",
     "react": "19.2.8",
-    "react-dom": "19.2.7"
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.6",
@@ -61,10 +61,14 @@
     "overrides": {
       "tmp": ">=0.2.6",
       "cookie@<0.7.0": "0.7.2",
-      "js-yaml@<3.15.0": "3.15.0",
-      "postcss@<8.5.18": "8.5.19",
+      "js-yaml@3": "3.15.1",
+      "js-yaml@4": "4.3.1",
+      "postcss": "^8.5.23",
       "uuid@<11.1.1": "11.1.1",
-      "brace-expansion@5.0.7": "5.0.8",
+      "brace-expansion@5": ">=5.0.9",
+      "ip-address": "^10.3.1",
+      "body-parser": ">=1.20.6",
+      "nanoid@3": "^3.3.17",
       "sharp@<0.35.0": "0.35.3",
       "minimatch@3": "10.2.5"
     }
