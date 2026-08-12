@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.5](../../compare/v2.2.4...v2.2.5) (2026-08-12)
+
+### 🐛 Bug Fixes
+
+- **ci:** deploy source to Vercel instead of a prebuilt bundle (eeb244a)
+
 ## [2.2.4](../../compare/v2.2.3...v2.2.4) (2026-08-12)
 
 ### 🐛 Bug Fixes
