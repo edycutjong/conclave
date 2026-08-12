@@ -16,26 +16,26 @@
 ## System architecture (Mermaid)
 ```mermaid
 flowchart TD
-    U[DAO member] -->|submit proposal| FE[Next.js UI]
+    U["DAO member"] -->|"submit proposal"| FE["Next.js UI"]
     FE --> ORC["Agent Orchestrator (TS worker)"]
     subgraph Council
-      RA[Risk Agent]
-      TA[Treasury Agent]
-      LA[Legal/Charter Agent]
-      AR[Arbiter]
+      RA["Risk Agent"]
+      TA["Treasury Agent"]
+      LA["Legal/Charter Agent"]
+      AR["Arbiter"]
     end
     ORC --> RA & TA & LA
     RA & TA & LA --> AR
-    RA & TA & LA -->|fact layer (MCP read shape)| MCP[Casper MCP Server]
-    TA -->|history| CLOUD[CSPR.cloud APIs]
-    MCP --> TN[(Casper Testnet)]
-    AR -->|verdict + quorum| MS[Approval Consensus off-chain]
-    MS --> VW{Human Veto Window}
-    VW -->|not vetoed| EX[Executor casper-js-sdk]
-    EX -->|TransactionV1 sign+send| GOV[Odra Governance Contract]
+    RA & TA & LA -->|"fact layer (MCP read shape)"| MCP["Casper MCP Server"]
+    TA -->|"history"| CLOUD["CSPR.cloud APIs"]
+    MCP --> TN[("Casper Testnet")]
+    AR -->|"verdict + quorum"| MS["Approval Consensus off-chain"]
+    MS --> VW{"Human Veto Window"}
+    VW -->|"not vetoed"| EX["Executor casper-js-sdk"]
+    EX -->|"TransactionV1 sign+send"| GOV["Odra Governance Contract"]
     GOV --> TN
-    AR -->|transcript hash| GOV
-    FE -->|deploy hash link| EXP[cspr.live explorer]
+    AR -->|"transcript hash"| GOV
+    FE -->|"deploy hash link"| EXP["cspr.live explorer"]
 ```
 
 ## The Odra governance contract (minimal, Rust)
