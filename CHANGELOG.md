@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.4](../../compare/v2.2.3...v2.2.4) (2026-08-12)
+
+### 🐛 Bug Fixes
+
+- **ci:** hoist pnpm node_modules so prebuilt deploys resolve (c7853f0)
+
+### 🔧 Chores
+
+- **deps-dev:** bump @types/node from 26.1.1 to 26.2.0 (#33) (96fe84b)
+- **deps:** repair the corrupt lockfile and clear all security advisories (4ad4908)
+- **deps-dev:** bump @playwright/test from 1.61.1 to 1.62.1 (#37) (bd23684)
+- **deps-dev:** bump @types/react from 19.2.17 to 19.2.18 (#38) (560cf40)
+- **deps-dev:** bump eslint-config-next from 16.2.11 to 16.3.0 (#39) (7b87e33)
+- **deps-dev:** bump tsx from 4.23.1 to 4.23.5 (#41) (919a2f3)
+
+### 📝 Documentation
+
+- **architecture:** quote mermaid labels so the system diagram renders (5311845)
+- point pitch video badge + deck embed to final demo video (facbb83)
+
 ## [2.2.3](../../compare/v2.2.2...v2.2.3) (2026-07-25)
 
 ### 🐛 Bug Fixes
